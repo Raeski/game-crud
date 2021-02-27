@@ -39,5 +39,13 @@ public class GameService implements GamesRepository {
                  .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Game not Found"));
     }
 
+    public void delete(long id) {
+        games.remove(findById(id));
+    }
+
+    public void replace(Games game) {
+        delete(game.getId());
+        games.add(game);
+    }
 
 }

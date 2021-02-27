@@ -32,6 +32,18 @@ public class GameController {
         return ResponseEntity.ok(gameService.findById(id));
     }
 
+    @DeleteMapping(path = "/{id}")
+    public ResponseEntity<Void> delete(@PathVariable long id) {
+        gameService.delete(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @PutMapping
+    public ResponseEntity<Void> replace(@RequestBody Games games) {
+        gameService.replace(games);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
 
 
 }
