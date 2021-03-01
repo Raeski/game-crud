@@ -1,0 +1,14 @@
+version: '3.1'
+services:
+  db:
+    image: mysql
+    container_name: spring_game
+    environment:
+      MYSQL_ROOT_PASSWORD: 99288723
+    ports:
+    - "3307:3306"
+    volumes:
+    - games_data:/var/lib/mysql
+
+volumes:
+  games_data:
