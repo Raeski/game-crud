@@ -17,7 +17,6 @@ Tecnologias utilizadas:
 
 ### Pré requisitos
 
-This is an example of how to list things you need to use the software and how to install them.
 * Insomnia ( Para testar os endpoints ) 
   ```sh
   GET - localhost:8080/games ( Para listar os jogos )
