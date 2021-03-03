@@ -1,6 +1,8 @@
 package com.br.games.controller;
 
 import com.br.games.domain.Games;
+import com.br.games.requests.GamePostRequestBody;
+import com.br.games.requests.GamePutRequestBody;
 import com.br.games.services.GameService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -23,7 +25,7 @@ public class GameController {
     }
 
     @PostMapping
-    public ResponseEntity<Games> save(@RequestBody Games games) {
+    public ResponseEntity<Games> save(@RequestBody GamePostRequestBody games) {
         return new ResponseEntity<>(gameService.save(games), HttpStatus.CREATED);
     }
 
@@ -41,7 +43,7 @@ public class GameController {
     }
 
     @PutMapping
-    public ResponseEntity<Void> replace(@RequestBody Games games) {
+    public ResponseEntity<Void> replace(@RequestBody GamePutRequestBody games) {
         gameService.replace(games);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

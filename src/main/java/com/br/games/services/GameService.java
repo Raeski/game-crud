@@ -1,7 +1,10 @@
 package com.br.games.services;
 
 import com.br.games.domain.Games;
+import com.br.games.mapper.GamesMapper;
 import com.br.games.repository.GamesRepository;
+import com.br.games.requests.GamePostRequestBody;
+import com.br.games.requests.GamePutRequestBody;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
@@ -25,8 +28,8 @@ public class GameService {
         return gamesRepository.findAll();
     }
 
-    public Games save(Games game) {
-        return gamesRepository.save(game);
+    public Games save(GamePostRequestBody gamePostRequestBody) {
+        return gamesRepository.save(GamesMapper.INSTANCE.toGame(gamePostRequestBody));
     }
 
     public Games findById(long id) {
@@ -38,9 +41,11 @@ public class GameService {
         gamesRepository.delete(findById(id));
     }
 
-    public void replace(Games game) {
-        delete(game.getId());
-//        games.add(game);
+    public void replace(GamePutRequestBody gamePutRequestBody) {
+        Games savedGame = findById(gamePutRequestBody.getId());
+        Games game = GamesMapper.INSTANCE.toGame(gamePutRequestBody);
+        game.setId(savedGame.getId());
+        gamesRepository.save(game);
     }
 
 }
