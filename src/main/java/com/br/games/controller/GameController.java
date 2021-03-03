@@ -29,7 +29,9 @@ public class GameController {
 
     @GetMapping(path = "/{id}")
     public ResponseEntity<Games> findById(@PathVariable long id) {
+
         return ResponseEntity.ok(gameService.findById(id));
+
     }
 
     @DeleteMapping(path = "/{id}")

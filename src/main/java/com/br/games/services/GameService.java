@@ -2,6 +2,9 @@ package com.br.games.services;
 
 import com.br.games.domain.Games;
 import com.br.games.repository.GamesRepository;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -11,41 +14,33 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 @Service
-public class GameService implements GamesRepository {
+@RequiredArgsConstructor
+public class GameService {
 
+    private final GamesRepository gamesRepository;
 
-
-    private static List<Games> games;
-
-    static {
-        games = new ArrayList<>(List.of(new Games(1, "Assassins Creed", "Ubisoft", 2020), new Games(2, "World of Warcraft", "Blizard", 2000)));
-    }
 
     public List<Games> listAll() {
 
-        return games;
+        return gamesRepository.findAll();
     }
 
     public Games save(Games game) {
-        game.setId((int) ThreadLocalRandom.current().nextLong(3, 100));
-        games.add(game);
-        return game;
+        return gamesRepository.save(game);
     }
 
     public Games findById(long id) {
-         return games.stream()
-                 .filter(game -> game.getId() == id)
-                 .findFirst()
+         return gamesRepository.findById(id)
                  .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Game not Found"));
     }
 
     public void delete(long id) {
-        games.remove(findById(id));
+        gamesRepository.delete(findById(id));
     }
 
     public void replace(Games game) {
         delete(game.getId());
-        games.add(game);
+//        games.add(game);
     }
 
 }
