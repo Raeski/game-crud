@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RequestMapping("/games")
@@ -25,7 +26,7 @@ public class GameController {
     }
 
     @PostMapping
-    public ResponseEntity<Games> save(@RequestBody GamePostRequestBody games) {
+    public ResponseEntity<Games> save(@RequestBody @Valid GamePostRequestBody games) {
         return new ResponseEntity<>(gameService.save(games), HttpStatus.CREATED);
     }
 
@@ -43,7 +44,7 @@ public class GameController {
     }
 
     @PutMapping
-    public ResponseEntity<Void> replace(@RequestBody GamePutRequestBody games) {
+    public ResponseEntity<Void> replace(@RequestBody @Valid GamePutRequestBody games) {
         gameService.replace(games);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
