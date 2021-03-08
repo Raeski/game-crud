@@ -1,6 +1,7 @@
 package com.br.games.services;
 
 import com.br.games.domain.Games;
+import com.br.games.exception.BadRequestException;
 import com.br.games.mapper.GamesMapper;
 import com.br.games.repository.GamesRepository;
 import com.br.games.requests.GamePostRequestBody;
@@ -30,7 +31,7 @@ public class GameService {
 
     public Games findById(long id) {
          return gamesRepository.findById(id)
-                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Game not Found"));
+                 .orElseThrow(() -> new BadRequestException("Game not Found"));
     }
 
     public void delete(long id) {
