@@ -7,9 +7,7 @@ import com.br.games.repository.GamesRepository;
 import com.br.games.requests.GamePostRequestBody;
 import com.br.games.requests.GamePutRequestBody;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
