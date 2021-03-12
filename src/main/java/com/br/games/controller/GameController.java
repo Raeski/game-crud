@@ -5,6 +5,8 @@ import com.br.games.requests.GamePostRequestBody;
 import com.br.games.requests.GamePutRequestBody;
 import com.br.games.services.GameService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,9 +22,9 @@ public class GameController {
     private final GameService gameService;
 
     @GetMapping
-    public ResponseEntity<List<Games>> list() {
+    public ResponseEntity<Page<Games>> list(Pageable pageable) {
 
-        return ResponseEntity.ok(gameService.listAll());
+        return ResponseEntity.ok(gameService.listAll(pageable));
     }
 
     @PostMapping

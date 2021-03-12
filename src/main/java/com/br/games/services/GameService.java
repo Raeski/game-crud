@@ -7,6 +7,8 @@ import com.br.games.repository.GamesRepository;
 import com.br.games.requests.GamePostRequestBody;
 import com.br.games.requests.GamePutRequestBody;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,9 +20,9 @@ public class GameService {
     private final GamesRepository gamesRepository;
 
 
-    public List<Games> listAll() {
+    public Page<Games> listAll(Pageable pageable) {
 
-        return gamesRepository.findAll();
+        return gamesRepository.findAll(pageable);
     }
 
     public Games save(GamePostRequestBody gamePostRequestBody) {
