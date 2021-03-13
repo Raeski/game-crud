@@ -7,6 +7,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
+import java.util.Collection;
+import java.util.Optional;
+
 @DataJpaTest
 @DisplayName("Tests for Game Repository")
 class GameRepositoryTest {
@@ -57,6 +60,38 @@ class GameRepositoryTest {
         Assertions.assertThat(gameUpdated.getProducer()).isEqualTo(gameToBeSaved.getProducer());
 
         Assertions.assertThat(gameUpdated.getReleaseYear()).isEqualTo(gameToBeSaved.getReleaseYear());
+    }
+
+    @Test
+    @DisplayName("Delete remove game when Successful")
+    void delete_RemovesGame_WhenSuccessful(){
+        Game gameToBeSaved = createGame();
+
+        Game gameSaved = this.gamesRepository.save(gameToBeSaved);
+
+        this.gamesRepository.delete(gameSaved);
+
+        Optional<Game> gameOptional = this.gamesRepository.findById(gameSaved.getId());
+
+        Assertions.assertThat(gameOptional).isEmpty();
+    }
+
+    @Test
+    @DisplayName("Find By Name returns list of game when Sucessful")
+    void findByName_ReturnsListOfGame_WhenSuccessful(){
+        Game gameToBeSaved = createGame();
+
+        Game gameSaved = this.gamesRepository.save(gameToBeSaved);
+
+        String name = gameSaved.getName();
+
+        Collection<Game> byName = this.gamesRepository.findByName(name);
+
+        Assertions.assertThat(byName).isNotEmpty();
+
+        Assertions.assertThat(byName).contains(gameSaved);
+
+
     }
 
 
