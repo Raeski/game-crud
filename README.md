@@ -11,13 +11,14 @@ Tecnologias utilizadas:
 * Lombok
 * MapStruct
 * MySQL
+* Junit
 
 <!-- GETTING STARTED -->
 ## Instalação
 
 ### Pré requisitos
 
-* Insomnia ( Para testar os endpoints ) 
+* Insomnia/Postman ( Para testar os endpoints ) 
   ```sh
   GET - localhost:8080/games ( Para listar os jogos )
   ```
@@ -34,6 +35,10 @@ Tecnologias utilizadas:
   
   
   * Alguma IDE que rode Java  como Eclipse, Intellij...
+      
+  * Mysql
+    
+  * Docker  
 
 
 ### Instalação
@@ -43,18 +48,24 @@ Tecnologias utilizadas:
    ```sh
    git clone https://github.com/Raeski/crud-place.git
    ```
-3. Abra em sua IDE de prefêrencia e execute o arquivo DemoApplication
+3. Abra em sua IDE de prefêrencia
 
-4. No insomnia teste os endpoins no localhost:8080
+4. No terminal execute docker-compose up
+
+5. Na IDE execute o arquivo GamesApplication
+
+6. No insomnia teste os endpoins no localhost:8080
    ```JS
-   /games - para criar um jogo
+   POST /games - para criar um jogo
+   
+   GET /games - Retorna uma lista com todos os jogos
+   
+   GET /games/{id} - Retorna o Game que foi passado o id
+   
+   DELETE /games/{id} - Deleta o Game que foi passado o id
+   
+   PUT /games - Atualiza o Game, precisa passar o id do game dentro do JSON
    ```
-
-<!-- LICENSE -->
-## License
-
-Distributed under the MIT License. See `LICENSE` for more information.
-
 
 <!-- CONTACT -->
 ## Contato
