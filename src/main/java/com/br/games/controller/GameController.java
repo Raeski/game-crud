@@ -1,6 +1,6 @@
 package com.br.games.controller;
 
-import com.br.games.domain.Games;
+import com.br.games.domain.Game;
 import com.br.games.requests.GamePostRequestBody;
 import com.br.games.requests.GamePutRequestBody;
 import com.br.games.services.GameService;
@@ -12,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @RequestMapping("/games")
 @RestController
@@ -22,18 +21,18 @@ public class GameController {
     private final GameService gameService;
 
     @GetMapping
-    public ResponseEntity<Page<Games>> list(Pageable pageable) {
+    public ResponseEntity<Page<Game>> list(Pageable pageable) {
 
         return ResponseEntity.ok(gameService.listAll(pageable));
     }
 
     @PostMapping
-    public ResponseEntity<Games> save(@RequestBody @Valid GamePostRequestBody games) {
+    public ResponseEntity<Game> save(@RequestBody @Valid GamePostRequestBody games) {
         return new ResponseEntity<>(gameService.save(games), HttpStatus.CREATED);
     }
 
     @GetMapping(path = "/{id}")
-    public ResponseEntity<Games> findById(@PathVariable long id) {
+    public ResponseEntity<Game> findById(@PathVariable long id) {
 
         return ResponseEntity.ok(gameService.findById(id));
 

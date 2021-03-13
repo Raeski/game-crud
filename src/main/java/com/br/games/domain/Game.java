@@ -1,6 +1,7 @@
 package com.br.games.domain;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -13,7 +14,8 @@ import javax.persistence.Id;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Games {
+@Builder
+public class Game {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
