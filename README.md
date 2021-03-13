@@ -19,26 +19,13 @@ Tecnologias utilizadas:
 ### Pré requisitos
 
 * Insomnia/Postman ( Para testar os endpoints ) 
-  ```sh
-  GET - localhost:8080/games ( Para listar os jogos )
-  ```
-  ```sh
-  POST - localhost:8080/games ( Para criar os jogos )
 
-  Exemplo de JSON : 
-  {
-	"name": "Fifa 21",
-	"producer": "EA",
-	"releaseYear": 2020
-  }
-  ```
   
+* Alguma IDE que rode Java  como Eclipse, Intellij... 
+
+* Mysql
   
-  * Alguma IDE que rode Java  como Eclipse, Intellij...
-      
-  * Mysql
-    
-  * Docker  
+* Docker  
 
 
 ### Instalação
@@ -55,6 +42,16 @@ Tecnologias utilizadas:
 5. Na IDE execute o arquivo GamesApplication
 
 6. No insomnia teste os endpoins no localhost:8080
+
+```
+    Exemplo de JSON :
+    {
+    "name": "Fifa 21",
+    "producer": "EA",
+    "releaseYear": 2020
+    }
+ ```
+
    ```JS
    POST /games - para criar um jogo
    
