@@ -33,6 +33,33 @@ class GameRepositoryTest {
         Assertions.assertThat(gameSaved.getReleaseYear()).isEqualTo(gameToBeSaved.getReleaseYear());
     }
 
+    @Test
+    @DisplayName("Save updates game when Successful")
+    void save_UpdatesGame_WhenSuccessful(){
+        Game gameToBeSaved = createGame();
+
+        Game gameSaved = this.gamesRepository.save(gameToBeSaved);
+
+        gameSaved.setName("Metro Exodus");
+
+        gameSaved.setProducer("4A Games");
+
+        gameSaved.setReleaseYear(2019L);
+
+        Game gameUpdated = this.gamesRepository.save(gameSaved);
+
+        Assertions.assertThat(gameUpdated).isNotNull();
+
+        Assertions.assertThat(gameUpdated.getId()).isNotNull();
+
+        Assertions.assertThat(gameUpdated.getName()).isEqualTo(gameToBeSaved.getName());
+
+        Assertions.assertThat(gameUpdated.getProducer()).isEqualTo(gameToBeSaved.getProducer());
+
+        Assertions.assertThat(gameUpdated.getReleaseYear()).isEqualTo(gameToBeSaved.getReleaseYear());
+    }
+
+
 
 
     private Game createGame() {
