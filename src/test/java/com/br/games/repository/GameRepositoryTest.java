@@ -39,6 +39,46 @@ class GameRepositoryTest {
     }
 
     @Test
+    @DisplayName("Save create game producer is empty when Successful")
+    void save_PersistGameIsProducerIsEmpty_WhenSuccessful(){
+        Game gameToBeSaved = createGame();
+
+        Game gameSaved = this.gamesRepository.save(gameToBeSaved);
+
+        gameSaved.setProducer("");
+
+        Assertions.assertThat(gameSaved).isNotNull();
+
+        Assertions.assertThat(gameSaved.getId()).isNotNull();
+
+        Assertions.assertThat(gameSaved.getName()).isEqualTo(gameToBeSaved.getName());
+
+        Assertions.assertThat(gameSaved.getProducer()).isEqualTo(gameToBeSaved.getProducer());
+
+        Assertions.assertThat(gameSaved.getReleaseYear()).isEqualTo(gameToBeSaved.getReleaseYear());
+    }
+
+    @Test
+    @DisplayName("Save create game releaseYear is null when Successful")
+    void save_PersistGameIsReleaseYearIsEmpty_WhenSuccessful(){
+        Game gameToBeSaved = createGame();
+
+        Game gameSaved = this.gamesRepository.save(gameToBeSaved);
+
+        gameSaved.setReleaseYear(null);
+
+        Assertions.assertThat(gameSaved).isNotNull();
+
+        Assertions.assertThat(gameSaved.getId()).isNotNull();
+
+        Assertions.assertThat(gameSaved.getName()).isEqualTo(gameToBeSaved.getName());
+
+        Assertions.assertThat(gameSaved.getProducer()).isEqualTo(gameToBeSaved.getProducer());
+
+        Assertions.assertThat(gameSaved.getReleaseYear()).isEqualTo(gameToBeSaved.getReleaseYear());
+    }
+
+    @Test
     @DisplayName("Save updates game when Successful")
     void save_UpdatesGame_WhenSuccessful(){
         Game gameToBeSaved = createGame();
@@ -112,7 +152,6 @@ class GameRepositoryTest {
                 .isThrownBy(() -> this.gamesRepository.save(game))
                 .withMessageContaining("The game name cannot be empty");
     }
-
 
     private Game createGame() {
         return Game.builder()
