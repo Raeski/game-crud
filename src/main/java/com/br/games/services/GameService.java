@@ -2,8 +2,8 @@ package com.br.games.services;
 
 import com.br.games.domain.Game;
 import com.br.games.exception.BadRequestException;
-import com.br.games.mapper.GamesMapper;
-import com.br.games.repository.GamesRepository;
+import com.br.games.mapper.GameMapper;
+import com.br.games.repository.GameRepository;
 import com.br.games.requests.GamePostRequestBody;
 import com.br.games.requests.GamePutRequestBody;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class GameService {
 
-    private final GamesRepository gamesRepository;
+    private final GameRepository gamesRepository;
 
 
     public Page<Game> listAll(Pageable pageable) {
@@ -24,7 +24,7 @@ public class GameService {
     }
 
     public Game save(GamePostRequestBody gamePostRequestBody) {
-        return gamesRepository.save(GamesMapper.INSTANCE.toGame(gamePostRequestBody));
+        return gamesRepository.save(GameMapper.INSTANCE.toGame(gamePostRequestBody));
     }
 
     public Game findById(long id) {
@@ -38,7 +38,7 @@ public class GameService {
 
     public void replace(GamePutRequestBody gamePutRequestBody) {
         Game savedGame = findById(gamePutRequestBody.getId());
-        Game game = GamesMapper.INSTANCE.toGame(gamePutRequestBody);
+        Game game = GameMapper.INSTANCE.toGame(gamePutRequestBody);
         game.setId(savedGame.getId());
         gamesRepository.save(game);
     }

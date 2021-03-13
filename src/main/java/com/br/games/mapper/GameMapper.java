@@ -8,9 +8,9 @@ import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
 @Mapper(componentModel = "spring")
-public abstract class GamesMapper {
+public abstract class GameMapper {
 
-    public static final GamesMapper INSTANCE = Mappers.getMapper(GamesMapper.class);
+    public static final GameMapper INSTANCE = Mappers.getMapper(GameMapper.class);
 
     public abstract Game toGame(GamePostRequestBody gamePostRequestBody);
 
