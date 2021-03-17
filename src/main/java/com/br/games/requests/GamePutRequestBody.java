@@ -1,10 +1,12 @@
 package com.br.games.requests;
 
+import lombok.Builder;
 import lombok.Data;
 
 import javax.validation.constraints.NotEmpty;
 
 @Data
+@Builder
 public class GamePutRequestBody {
 
     private Long id;
